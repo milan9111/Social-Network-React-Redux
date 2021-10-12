@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Users.module.css";
-import usersIcon from './../../assect/images/usersIcon.png'
+import usersIcon from './../../assect/images/usersIcon.png';
  
 
 
