@@ -1,8 +1,16 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
+import { Preloader } from "../../common/preloader/Preloader";
 import s from "./ProfileInfo.module.css";
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+
+  console.log(props.profile);
+
+  if(!props.profile) {
+     return <Preloader />
+  }
+
   return (
     <div>
       <div>
@@ -11,7 +19,16 @@ const ProfileInfo = () => {
           alt="photo"
         />
       </div>
-      <div className={s.discrptionBlock}>ava + discrp</div>
+      <div className={s.discrptionBlock}>
+        <img src={props.profile.photos.large} alt="" />
+        <div>{props.profile.fullName}</div>
+        <div>{props.profile.aboutMe}</div>
+        <div>{props.profile.contacts.instagram}</div>
+        <div>{props.profile.contacts.facebook}</div>
+        <div>{props.profile.contacts.twitter}</div>
+        <div>{props.profile.contacts.vk}</div>
+      
+      </div>
     </div>
   );
 };
