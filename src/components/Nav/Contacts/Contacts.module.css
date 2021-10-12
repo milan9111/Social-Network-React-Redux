@@ -1,0 +1,15 @@
+.ContactsBox {
+    margin-right: 10px;
+}
+
+.contactsNav img {
+    max-width: 35px;
+    max-height: 35px;
+    border-radius: 50%;
+}
+
+.contactsNav a {
+   text-decoration: none;
+   font-size: 12px;
+   color:cornflowerblue;
+}

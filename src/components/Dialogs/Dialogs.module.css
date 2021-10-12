@@ -1,0 +1,42 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    color: grey;
+}
+
+.dialogs a {
+    text-decoration: none;
+    color: #242424;
+}
+
+.dialogsItems {
+    
+
+}
+
+.dialogsItems .active{
+    color: aqua;
+}
+
+.dialog {
+    padding-bottom: 10px;
+    display: flex;
+}
+
+.dialog img {
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+}
+
+.dialog a {
+    padding-top: 12px;
+}
+
+.messages {
+     
+}
+
+.message {
+    padding-bottom: 10px;
+}

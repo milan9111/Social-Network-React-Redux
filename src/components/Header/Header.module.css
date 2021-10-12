@@ -1,0 +1,11 @@
+.header {
+    grid-area: h;
+  }
+  
+  .header img {
+    max-width: 50px;
+    object-fit: cover;
+    object-position: center;
+    padding: 20px;
+  }
+  
