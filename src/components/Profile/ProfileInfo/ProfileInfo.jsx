@@ -5,8 +5,6 @@ import s from "./ProfileInfo.module.css";
 
 const ProfileInfo = (props) => {
 
-  console.log(props.profile);
-
   if(!props.profile) {
      return <Preloader />
   }

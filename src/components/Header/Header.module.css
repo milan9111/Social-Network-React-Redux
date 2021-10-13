@@ -8,4 +8,8 @@
     object-position: center;
     padding: 20px;
   }
+
+.loginBlock {
+  float: right;
+}
   

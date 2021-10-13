@@ -3,6 +3,7 @@ import { profileReducer } from './profileReducer';
 import { dialogsReducer } from './dialogsReducer';
 import { siteBarReducer } from './siteBarReducer';
 import { usersReducer } from "./usersReducer";
+import authReducer from "./authReducer";
 
  
 
@@ -10,7 +11,8 @@ let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     siteBar: siteBarReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 });
 
 
