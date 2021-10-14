@@ -9,7 +9,8 @@ let initialState = {
     isFetching: false
 }
 
-const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action) => {
+    debugger;
     switch (action.type) {
         case SET_USER_DATA: 
             return {
@@ -27,4 +28,4 @@ const authReducer = (state = initialState, action) => {
 export const setAuthUserData = (id, email, login) => ({type: SET_USER_DATA, data: {id, email, login}});
 
 
-export default authReducer;
+ 
