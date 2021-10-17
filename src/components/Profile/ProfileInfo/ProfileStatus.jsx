@@ -1,12 +1,12 @@
 import React from "react";
 import style from "./ProfileInfo.module.css";
 
-
+ 
 class ProfileStatus extends React.Component {
 
     state = {
         editMode: false,
-        title: 'YO!'
+        status: this.props.status
     }
 
     activateEditMode = () => {
@@ -19,21 +19,37 @@ class ProfileStatus extends React.Component {
         this.setState ({
             editMode: false,
         })
+        this.props.updateStatus(this.state.status);
+    }
+
+    onStatusChange = (e) => {
+       this.setState({
+        status: e.target.value,
+      });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+    if(prevProps.status !== this.props.status) {
+        this.setState({
+         status: this.props.status
+        }) 
+      }  
     }
 
     render() {
+      console.log('render');
             return (
               <div>
                 {!this.state.editMode ? 
                 (
                   <div>
-                    <span onDoubleClick={this.activateEditMode}>{this.props.status}</span>
+                    <span onDoubleClick={this.activateEditMode}>{this.props.status || 'Редактируйте Ваш статус'}</span>
                   </div>
                 ) 
                 : 
                 ( 
                   <div>
-                    <input autoFocus={true} onBlur={this.deactivateEditMode} defaultValue={this.props.status} />
+                    <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode} value={this.state.status} />
                   </div>
                 )}
               </div>
