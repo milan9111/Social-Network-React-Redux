@@ -4,7 +4,7 @@ import { follow, unFollow, setCurrentPage, requestUsers} from "../../redux/users
 import Users from "./Users";
 import { Preloader } from "../common/preloader/Preloader";
 import { compose } from "redux";
-import { getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress} from './../../redux/usersSelectors';
+import { getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress } from './../../redux/usersSelectors';
 
 
 // let mapStateToProps = (state) => { 
