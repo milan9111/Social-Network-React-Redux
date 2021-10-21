@@ -4,6 +4,7 @@ import { Preloader } from "../../common/preloader/Preloader";
 import style from "./ProfileInfo.module.css";
 import usersIcon from './../../../assect/images/usersIcon.png';
 import ProfileStatus from './ProfileStatus';
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
 
@@ -19,7 +20,7 @@ const ProfileInfo = (props) => {
           alt="photo"
         /> */}
       </div>
-      <ProfileStatus status={props.status} updateStatus={props.updateStatus}/> 
+      <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/> 
       <div className={style.discrptionBlock}>
         {props.profile.photos.large ? <img src={props.profile.photos.large} alt="photo" /> : <img src={usersIcon} alt="photo"/>}
         <div>{props.profile.fullName}</div>
