@@ -10,11 +10,11 @@ import { BrowserRouter } from 'react-router-dom';
 
  
     ReactDOM.render(
+    <BrowserRouter>
         <Provider store={store}>
-          <BrowserRouter>
               <App /> 
-          </BrowserRouter>  
-        </Provider>,
+        </Provider>
+    </BrowserRouter>,  
       document.getElementById("root")
     );
  
