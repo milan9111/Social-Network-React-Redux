@@ -28,25 +28,28 @@ class App extends React.Component {
   }
 
   render() {
-     return !this.props.initialized 
-        ? <Preloader /> 
-        :  <>
-        <div className="app-wrapper">
-             <HeaderContainer />
-             <NavContainer />
-             <div className="app-wrapper-content">
-             <Suspense fallback={<Preloader />}>
-                 <Route path ="/login" render={() => <LoginForm />} /> 
-                 <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-                 <Route path="/dialogs" render={() => <DialogsContainer />} />
-             </Suspense>      
-                 <Route path="/users" render={() => <UsersContainer />} />
-                 <Route path="/news" render={() => <News />}/>
-                 <Route path="/music" render={() => <Music />}/>
-                 <Route path="/settings" render={() => <Settings />}/>
-             </div>
-           </div>
-       </>   
+    //  return !this.props.initialized  -- закомментиовано, так как не проплачена подписка на API сервера 
+    //     ? <Preloader /> 
+    //     :  <>
+    return(
+      <div className="app-wrapper">
+        <HeaderContainer />
+        <NavContainer />
+        <div className="app-wrapper-content">
+        <Suspense fallback={<Preloader />}>
+            <Route path ="/login" render={() => <LoginForm />} /> 
+            <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+            <Route path="/dialogs" render={() => <DialogsContainer />} />
+        </Suspense>      
+            <Route path="/users" render={() => <UsersContainer />} />
+            <Route path="/news" render={() => <News />}/>
+            <Route path="/music" render={() => <Music />}/>
+            <Route path="/settings" render={() => <Settings />}/>
+        </div>
+      </div>
+    );
+       
+      //  </>   
   }  
 }
 
