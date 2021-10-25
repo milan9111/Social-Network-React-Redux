@@ -1,15 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
-import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import { Route } from 'react-router';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavContainer from './components/Nav/NavContainer';
 import UsersContainer from './components/Users/UsersContainer';
-import LoginForm from './components/Login/Login';
 import { connect, Provider } from 'react-redux';
 import { initializeApp } from './redux/appReducer';
 import { withRouter } from 'react-router';
@@ -19,7 +16,11 @@ import store from './redux/reduxStore';
 import { BrowserRouter } from 'react-router-dom';
 
 
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+const LoginForm = React.lazy(() => import('./components/Login/Login'));
 
+ 
 class App extends React.Component {
   
   componentDidMount() {
@@ -34,13 +35,15 @@ class App extends React.Component {
              <HeaderContainer />
              <NavContainer />
              <div className="app-wrapper-content">
+             <Suspense fallback={<Preloader />}>
+                 <Route path ="/login" render={() => <LoginForm />} /> 
                  <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
                  <Route path="/dialogs" render={() => <DialogsContainer />} />
+             </Suspense>      
                  <Route path="/users" render={() => <UsersContainer />} />
                  <Route path="/news" render={() => <News />}/>
                  <Route path="/music" render={() => <Music />}/>
                  <Route path="/settings" render={() => <Settings />}/>
-                 <Route path ="/login" render={() => <LoginForm />} />                 
              </div>
            </div>
        </>   
