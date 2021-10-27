@@ -16,4 +16,8 @@
 .contact {
     padding-left: 20px;
 }
- 
+
+.errorSave {
+    color: red;
+    border: 3px solid red;
+}

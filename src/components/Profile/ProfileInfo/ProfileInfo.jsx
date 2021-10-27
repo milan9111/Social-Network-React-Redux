@@ -21,7 +21,10 @@ const onMainPhotoSelected = (e) => {
 }
 
 const onSubmit = (formData) => {
-    props.saveProfile(formData); 
+    props.saveProfile(formData).then(
+      () => {
+      setEditMode(false);
+    });
 }
 
   return (
@@ -32,8 +35,10 @@ const onSubmit = (formData) => {
       {editMode 
       ? 
       <ProfileDataForm profile={props.profile} 
-                                   isOwner={props.isOwner} 
-                                   onSubmit={onSubmit}/> 
+                       isOwner={props.isOwner} 
+                       onSubmit={onSubmit}
+                       initialValues={props.profile}  
+                       /> 
       : 
       <ProfileData profile={props.profile} 
                    onMainPhotoSelected={onMainPhotoSelected} 
