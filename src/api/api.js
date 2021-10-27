@@ -57,6 +57,9 @@ export const profileAPI = {
                 'Content-Type': 'multipart/form-data'
             }
         }); 
+    },
+    saveProfile(newDataProfile) {
+        return instance.put(`profile`, newDataProfile);
     }
 };
 
