@@ -62,15 +62,23 @@ export let getUserProfile = (userId) => async(dispatch) => {
 }
 
 export let getStatus = (userId)  => async(dispatch) => {
-    let response = await profileAPI.getStatus(userId);
+    try{
+        let response = await profileAPI.getStatus(userId);
         dispatch(setStatus(response.data));
+    } catch(error) {
+        console.log(error);
+    }
 }
 
 export let updateStatus = (status)  => async(dispatch) => {
-    let response = await profileAPI.updateStatus(status);
+    try{
+        let response = await profileAPI.updateStatus(status);
         if(response.data.resultCode === 0) {
             dispatch(setStatus(status));
         } 
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export let savePhoto = (file) => async(dispatch) => {

@@ -4,7 +4,7 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import { Route } from 'react-router';
+import { Redirect, Route } from 'react-router';
 import NavContainer from './components/Nav/NavContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import { connect, Provider } from 'react-redux';
@@ -23,8 +23,17 @@ const LoginForm = React.lazy(() => import('./components/Login/Login'));
  
 class App extends React.Component {
   
+  catchAllUnhandleErrors = (promiseRejectionEvent) => {
+    console.error(promiseRejectionEvent);
+  }
+
   componentDidMount() {
     this.props.initializeApp();
+    window.addEventListener('unhandledrejection', this.catchAllUnhandleErrors);
+  }
+
+  componentWillUnmount() {
+    window.removeAddEventListener('unhandledrejection', this.catchAllUnhandleErrors);
   }
 
   render() {
@@ -36,20 +45,20 @@ class App extends React.Component {
         <HeaderContainer />
         <NavContainer />
         <div className="app-wrapper-content">
-        <Suspense fallback={<Preloader />}>
-            <Route path ="/login" render={() => <LoginForm />} /> 
-            <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-            <Route path="/dialogs" render={() => <DialogsContainer />} />
-        </Suspense>      
-            <Route path="/users" render={() => <UsersContainer />} />
-            <Route path="/news" render={() => <News />}/>
-            <Route path="/music" render={() => <Music />}/>
-            <Route path="/settings" render={() => <Settings />}/>
+            <Suspense fallback={<Preloader />}>
+                <Route exact path="/" render={() => <Redirect to={"/profile"} />} />
+                <Route path ="/login" render={() => <LoginForm />} /> 
+                <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+                <Route path="/dialogs" render={() => <DialogsContainer />} />
+            </Suspense>      
+                <Route path="/users" render={() => <UsersContainer />} />
+                <Route path="/news" render={() => <News />}/>
+                <Route path="/music" render={() => <Music />}/>
+                <Route path="/settings" render={() => <Settings />}/>
         </div>
+        
       </div>
     );
-       
-      //  </>   
   }  
 }
 
@@ -64,7 +73,7 @@ let AppContainer = compose(
    
 
 let SamuraiJSApp = (props) => {
-  return <BrowserRouter basename={process.env.PUBLIC_URL}>
+  return <BrowserRouter>
         <Provider store={store}>
               <AppContainer /> 
         </Provider>
