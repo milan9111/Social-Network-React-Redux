@@ -1,4 +1,8 @@
+import { messagesType, dialogType } from "../types/types";
+
 const ADD_MESSAGE = 'ADD-MESSAGE';
+
+
 
 let initialState = {
     messages:   [
@@ -7,7 +11,7 @@ let initialState = {
     {id: 3, messages: 'Yo'},
     {id: 4, messages: 'Yo'},
     {id: 5, messages: 'Yo'}
-],  
+] as Array<messagesType>,  
     
     dialogs:    [
     {id: 1, name: 'Dimych'}, 
@@ -16,11 +20,15 @@ let initialState = {
     {id: 4, name: 'Sasha'}, 
     {id: 5, name: 'Victor'}, 
     {id: 6, name: 'Valera'}
-],
+] as Array<dialogType>,
    
 };
 
-export const dialogsReducer = (state = initialState, action) => {
+
+export type initialStateType = typeof initialState; 
+
+
+export const dialogsReducer = (state = initialState, action:any):initialStateType => {
     switch (action.type) {
         case ADD_MESSAGE:
             let newMessage = {
@@ -36,5 +44,11 @@ export const dialogsReducer = (state = initialState, action) => {
     } 
 }
 
-export let addMessageActionCreator = (newMessageText) => ({type: ADD_MESSAGE, newMessageText});
+
+type addMessageActionCreatorType = {
+    type: typeof ADD_MESSAGE,
+    newMessageText: string
+}
+
+export let addMessageActionCreator = (newMessageText:string):addMessageActionCreatorType => ({type: ADD_MESSAGE, newMessageText});
  
